@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 
@@ -25,6 +26,7 @@ class EmotionalFaceView(context: Context?, attrs: AttributeSet?) : View(context,
         super.onDraw(canvas)
 
         drawFaceBackground(canvas)
+        drawEyes(canvas)
     }
 
     private fun drawFaceBackground(canvas: Canvas) {
@@ -42,11 +44,23 @@ class EmotionalFaceView(context: Context?, attrs: AttributeSet?) : View(context,
     }
 
 
-    private fun drawEyes(canvas: Canvas?) {
+    private fun drawEyes(canvas: Canvas) {
+
+        paint.color = eyesColor
+        paint.style = Paint.Style.FILL
+
+        val leftEyeRect = RectF(size * 0.32f, size * 0.23f , size *0.43f,size*0.50f)
+
+        canvas.drawOval(leftEyeRect,paint)
+
+        val rightEyeRect = RectF(size * 0.57f, size * 0.23f , size *0.68f,size*0.50f)
+
+        canvas.drawOval(rightEyeRect,paint)
+
 
     }
 
-    private fun drawMouth(canvas: Canvas?) {
+    private fun drawMouth(canvas: Canvas) {
 
     }
 
