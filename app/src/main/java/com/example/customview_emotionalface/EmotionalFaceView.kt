@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
@@ -21,12 +22,15 @@ class EmotionalFaceView(context: Context?, attrs: AttributeSet?) : View(context,
     // View size in pixels
     private var size = 320
 
+    private var mouthPath = Path()
+
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         drawFaceBackground(canvas)
         drawEyes(canvas)
+        drawMouth(canvas)
     }
 
     private fun drawFaceBackground(canvas: Canvas) {
@@ -49,19 +53,32 @@ class EmotionalFaceView(context: Context?, attrs: AttributeSet?) : View(context,
         paint.color = eyesColor
         paint.style = Paint.Style.FILL
 
-        val leftEyeRect = RectF(size * 0.32f, size * 0.23f , size *0.43f,size*0.50f)
+        val leftEyeRect = RectF(size * 0.32f, size * 0.23f, size * 0.43f, size * 0.50f)
 
-        canvas.drawOval(leftEyeRect,paint)
+        canvas.drawOval(leftEyeRect, paint)
 
-        val rightEyeRect = RectF(size * 0.57f, size * 0.23f , size *0.68f,size*0.50f)
+        val rightEyeRect = RectF(size * 0.57f, size * 0.23f, size * 0.68f, size * 0.50f)
 
-        canvas.drawOval(rightEyeRect,paint)
+        canvas.drawOval(rightEyeRect, paint)
 
 
     }
 
     private fun drawMouth(canvas: Canvas) {
+        paint.color = mouthColor
+        paint.style = Paint.Style.FILL
 
+        mouthPath.moveTo(size * 0.22f, size * 0.70f)
+        mouthPath.quadTo(size * 0.50f, size * 0.80f,size * 0.78f, size * 0.70f)
+        mouthPath.quadTo(size * 0.50f, size * 0.90f,size * 0.22f, size * 0.70f)
+
+        canvas.drawPath(mouthPath,paint)
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        size=Math.min(measuredWidth,measuredHeight)
+        setMeasuredDimension(size,size)
     }
 
 }
