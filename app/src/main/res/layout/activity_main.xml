@@ -16,4 +16,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.example.customview_emotionalface.EmotionalFaceView
+        android:id="@+id/happyButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:borderColor="@color/white"
+        app:eyesColor="@color/white"
+        app:faceColor="@android:color/holo_red_dark"
+        app:mouthColor="@color/white"
+        app:state="happy"
+        />
+
+    <com.example.customview_emotionalface.EmotionalFaceView
+        android:id="@+id/sadButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:borderColor="@color/black"
+        app:eyesColor="@color/black"
+        app:faceColor="@android:color/darker_gray"
+        app:mouthColor="@color/black"
+        app:state="sad"
+       />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
